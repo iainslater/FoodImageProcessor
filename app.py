@@ -15,14 +15,14 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Google Sheets Setup (Load JSON from an Environment Variable)
 SERVICE_ACCOUNT_JSON = os.getenv("GOOGLE_SHEETS_CREDENTIALS")
-SHEET_NAME = os.getenv("GOOGLE_SHEET_NAME", "FoodLog")
+SHEET_NAME = "1Qxkx5vOaJU4st7UnBDRDsWI_nowMYyOKNIB1Mtul91w" 
 
 # Load Google Sheets Credentials
 if SERVICE_ACCOUNT_JSON:
     creds_dict = json.loads(SERVICE_ACCOUNT_JSON)
     creds = Credentials.from_service_account_info(creds_dict, scopes=["https://www.googleapis.com/auth/spreadsheets"])
     client = gspread.authorize(creds)
-    sheet = client.open(SHEET_NAME).sheet1
+    sheet = client.open_by_key(SHEET_NAME).sheet1
 else:
     raise ValueError("Missing Google Sheets credentials")
 
