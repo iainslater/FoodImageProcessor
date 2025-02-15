@@ -4,7 +4,7 @@ import openai
 import base64
 import json
 from flask import Flask, request, jsonify
-from flask-cors import CORS  # Import CORS
+from flask_cors import CORS  # Import CORS
 from google.oauth2.service_account import Credentials
 import gspread
 from datetime import datetime
