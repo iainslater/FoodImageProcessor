@@ -78,6 +78,6 @@ def analyze_food_image(image_base64, user_description=""):
     return [datetime.now().strftime("%Y-%m-%d %H:%M:%S"), meal_name, calorie_estimate]
 
 if __name__ == '__main__':
-	import os
+    import os
     port = int(os.getenv("PORT", 5000))  # Use Render's assigned port or default to 5000
     app.run(host='0.0.0.0', port=port)
