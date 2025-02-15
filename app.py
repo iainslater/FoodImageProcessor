@@ -30,6 +30,10 @@ def append_to_google_sheets(data):
     """Sends processed data to Google Sheets."""
     sheet.append_row(data)
 
+@app.route('/')
+def home():
+	return "Flask API is running"
+
 @app.route('/upload', methods=['POST'])
 def upload_photo():
     """Handles image upload from the front end."""
