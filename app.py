@@ -11,7 +11,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Load API Keys from Environment Variables (Set these in Render)
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("sk-proj-6il6YvbC6Ie7N3dJ86VLT3BlbkFJCZH0sodr35afHtM0nBwj")
 
 # Google Sheets Setup (Load JSON from an Environment Variable)
 SERVICE_ACCOUNT_JSON = os.getenv("GOOGLE_SHEETS_CREDENTIALS")
