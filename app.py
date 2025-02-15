@@ -4,6 +4,7 @@ import openai
 import base64
 import json
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import CORS
 from google.oauth2.service_account import Credentials
 import gspread
 from datetime import datetime
@@ -36,11 +37,14 @@ def home():
 
 @app.route('/upload', methods=['POST'])
 def upload_photo():
-    """Handles image upload from the front end."""
     if 'file' not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
-
+        return jsonify({"error": "No file part"}), 400
+    
     file = request.files['file']
+    file.save(f"./uploads/{file.filename}")  # Save file
+    
+    # return jsonify({"message": "File uploaded successfully!"})
+    
     description = request.form.get("description", "")
 
     # Convert image to Base64 (Render does not support local storage)
@@ -74,5 +78,6 @@ def analyze_food_image(image_base64, user_description=""):
     return [datetime.now().strftime("%Y-%m-%d %H:%M:%S"), meal_name, calorie_estimate]
 
 if __name__ == '__main__':
+	import os
     port = int(os.getenv("PORT", 5000))  # Use Render's assigned port or default to 5000
     app.run(host='0.0.0.0', port=port)
